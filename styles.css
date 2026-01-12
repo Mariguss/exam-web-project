@@ -1,0 +1,90 @@
+h1, h2, h3, h4, h5 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+/* Контейнеры с тенью и скруглением */
+.card, .border, .table {
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Формы — мягкие поля ввода */
+.form-control, .form-select {
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-control:focus, .form-select:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+}
+
+/* Секции — вертикальные отступы */
+section {
+  margin-bottom: 2rem;
+}
+
+/* Заголовки секций */
+section h2 {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #0d6efd;
+  border-radius: 2px;
+}
+
+/* Таблица — зебра для лучшей читаемости */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Кнопки — мягкие тени */
+.btn {
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Модальное окно — плавное появление */
+.modal.fade .modal-dialog {
+  transform: translateY(-50px);
+  transition: transform 0.3s ease-out;
+}
+.modal.show .modal-dialog {
+  transform: translateY(0);
+}
+
+/* Уведомления — анимация появления */
+#notifications .alert {
+  opacity: 0;
+  animation: fadeInOut 4s forwards;
+}
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Плавный скролл при навигации */
+html {
+  scroll-behavior: smooth;
+}
