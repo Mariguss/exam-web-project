@@ -1,188 +1,188 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Личный кабинет — LinguaSchool</title>
-  <!-- Bootstrap 5.3 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Свои стили -->
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Личный кабинет — LinguaSchool</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Свои стили -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Шапка сайта: заголовок, включающий название сайта, логотип и 
-навигационный блок со ссылкой на главную страницу.  -->
-  <header class="bg-primary text-white py-3 shadow-sm">
-    <div class="container d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center">
-        <div class="bg-light text-primary rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px; font-weight: bold;">LS</div>
-        <h1 class="h5 mb-0">LinguaSchool</h1>
-      </div>
-      <nav>
-        <ul class="nav">
-          <li class="nav-item"><a class="nav-link text-white" href="index.html">Главная</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Область уведомлений: место для всплывающих оповещений или 
-уведомлений.  -->
-  <div id="notifications" class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1050;"></div>
-
-  <!-- Основной контент -->
-  <main class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Мои заявки</h2>
-
-      <div id="ordersContainer">
-        <table class="table table-hover align-middle">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Курс / Репетитор</th>
-              <th>Дата</th>
-              <th>Стоимость</th>
-              <th>Действия</th>
-            </tr>
-          </thead>
-          <tbody id="ordersTableBody"></tbody>
-        </table>
-
-        <!-- Пагинация: навигационная система, позволяющая пользователям 
-просматривать заказы на нескольких страницах.  -->
-        <nav aria-label="Пагинация заявок" class="mt-4">
-          <ul id="ordersPagination" class="pagination justify-content-center"></ul>
-        </nav>
-
-        <p id="noOrdersMessage" class="text-center text-muted d-none">У вас пока нет заявок.</p>
-      </div>
-    </div>
-  </main>
-
-  <!-- Модальное окно: Подробнее -->
-  <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="detailModalLabel">Детали заявки</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-        </div>
-        <div class="modal-body" id="detailModalContent">
-          <!-- Данные подставляются динамически -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Модальное окно: Редактирование -->
-  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editModalLabel">Редактирование заявки</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-        </div>
-        <div class="modal-body">
-          <form id="editForm">
-            <input type="hidden" id="editOrderId">
-            <div class="mb-3">
-              <label class="form-label">Курс / Репетитор</label>
-              <input type="text" id="editOrderTitle" class="form-control" readonly>
+    <!-- Шапка сайта: заголовок, включающий название сайта, логотип и 
+навигационный блок со ссылкой на главную страницу.    -->
+    <header class="bg-primary text-white py-3 shadow-sm">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <div class="bg-light text-primary rounded-circle d-flex align-items-center justify-content-center me-2 round">LS</div>
+                <h1 class="h5 mb-0">LinguaSchool</h1>
             </div>
-            <div class="mb-3">
-              <label for="editStudentsNumber" class="form-label">Количество студентов (1–20)</label>
-              <input type="number" id="editStudentsNumber" class="form-control" min="1" max="20" required>
-            </div>
-            <div class="mb-3">
-              <label for="editDuration" class="form-label">Продолжительность (часы)</label>
-              <input type="number" id="editDuration" class="form-control" min="1" max="40">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Дополнительные опции</label>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="editSupplementary">
-                <label class="form-check-label" for="editSupplementary">Доп. материалы (+2000 ₽/студент)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="editPersonalized">
-                <label class="form-check-label" for="editPersonalized">Индивидуальные занятия (+1500 ₽/неделя)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="editExcursions">
-                <label class="form-check-label" for="editExcursions">Культурные экскурсии (+25%)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="editAssessment">
-                <label class="form-check-label" for="editAssessment">Оценка уровня (+300 ₽)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="editInteractive">
-                <label class="form-check-label" for="editInteractive">Интерактивная платформа (+50%)</label>
-              </div>
-            </div>
-            <div class="alert alert-info">
-              <strong>Новая стоимость:</strong> <span id="editTotalPrice">—</span> ₽
-            </div>
-          </form>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="index.html">Главная</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-          <button type="button" class="btn btn-primary" id="saveEditBtn">Сохранить</button>
-        </div>
-      </div>
-    </div>
-  </div>
+    </header>
 
-  <!-- Модальное окно: Подтверждение удаления -->
-  <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteConfirmLabel">Подтверждение удаления</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-        </div>
-        <div class="modal-body">
-          Вы уверены, что хотите удалить заявку?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Нет</button>
-          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Да</button>
-        </div>
-      </div>
-    </div>
-  </div>
+    <!-- Область уведомлений: место для всплывающих оповещений или 
+уведомлений.    -->
+    <div id="notifications" class="position-fixed top-0 start-50 translate-middle-x p-3"></div>
 
-  <!-- Футер: контактная информация и ссылки на социальные сети.  -->
-  <footer class="bg-dark text-white py-4 mt-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h5>LinguaSchool</h5>
-          <p>г. Москва, ул. Образцовая, д. 10</p>
-          <p>Телефон: +7 (495) 123-45-67</p>
-          <p>Email: info@linguaschool.ru</p>
-        </div>
-        <div class="col-md-6 text-md-end">
-          <h5>Социальные сети</h5>
-          <a href="#" class="text-white me-3">VK</a>
-          <a href="#" class="text-white me-3">Telegram</a>
-          <a href="#" class="text-white">WhatsApp</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+    <!-- Основной контент -->
+    <main class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Мои заявки</h2>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Свои скрипты -->
-  <script src="config.js"></script>
-  <script src="api.js"></script>
-  <script src="profile.js"></script>
+            <div id="ordersContainer">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Курс / Репетитор</th>
+                            <th>Дата</th>
+                            <th>Стоимость</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody"></tbody>
+                </table>
+
+                <!-- Пагинация: навигационная система, позволяющая пользователям 
+просматривать заказы на нескольких страницах.    -->
+                <nav aria-label="Пагинация заявок" class="mt-4">
+                    <ul id="ordersPagination" class="pagination justify-content-center"></ul>
+                </nav>
+
+                <p id="noOrdersMessage" class="text-center text-muted d-none">У вас пока нет заявок.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Модальное окно: Подробнее -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel">Детали заявки</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body" id="detailModalContent">
+                    <!-- Данные подставляются динамически -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Редактирование -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Редактирование заявки</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" id="editOrderId">
+                        <div class="mb-3">
+                            <label class="form-label">Курс / Репетитор</label>
+                            <input type="text" id="editOrderTitle" class="form-control" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editStudentsNumber" class="form-label">Количество студентов (1–20)</label>
+                            <input type="number" id="editStudentsNumber" class="form-control" min="1" max="20" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDuration" class="form-label">Продолжительность (часы)</label>
+                            <input type="number" id="editDuration" class="form-control" min="1" max="40">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Дополнительные опции</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="editSupplementary">
+                                <label class="form-check-label" for="editSupplementary">Доп. материалы (+2000 ₽/студент)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="editPersonalized">
+                                <label class="form-check-label" for="editPersonalized">Индивидуальные занятия (+1500 ₽/неделя)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="editExcursions">
+                                <label class="form-check-label" for="editExcursions">Культурные экскурсии (+25%)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="editAssessment">
+                                <label class="form-check-label" for="editAssessment">Оценка уровня (+300 ₽)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="editInteractive">
+                                <label class="form-check-label" for="editInteractive">Интерактивная платформа (+50%)</label>
+                            </div>
+                        </div>
+                        <div class="alert alert-info">
+                            <strong>Новая стоимость:</strong> <span id="editTotalPrice">—</span> ₽
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary" id="saveEditBtn">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Подтверждение удаления -->
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteConfirmLabel">Подтверждение удаления</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    Вы уверены, что хотите удалить заявку?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Нет</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Да</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер: контактная информация и ссылки на социальные сети.    -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>LinguaSchool</h5>
+                    <p>г. Москва, ул. Образцовая, д. 10</p>
+                    <p>Телефон: +7 (495) 123-45-67</p>
+                    <p>Email: info@linguaschool.ru</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5>Социальные сети</h5>
+                    <a href="#" class="text-white me-3">VK</a>
+                    <a href="#" class="text-white me-3">Telegram</a>
+                    <a href="#" class="text-white">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Свои скрипты -->
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script src="profile.js"></script>
 </body>
 </html>
 

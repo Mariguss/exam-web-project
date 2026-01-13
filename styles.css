@@ -4,6 +4,19 @@ h1, h2, h3, h4, h5 {
   color: #2c3e50;
 }
 
+.round {
+  width: 40px; 
+  height: 40px; 
+  font-weight: bold;
+}
+
+.map {
+  height: 500px; 
+  width: 100%; 
+  border-radius: 10px; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
 /* Контейнеры с тенью и скруглением */
 .card, .border, .table {
   border: none;

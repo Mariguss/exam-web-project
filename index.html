@@ -1,429 +1,429 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LinguaSchool — Изучайте языки с нами</title>
-  <!-- Bootstrap 5.3 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Свои стили -->
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>LinguaSchool — Изучайте языки с нами</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Свои стили -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Шапка сайта : Заголовок, включающий название сайта (языковой школы), 
+    <!-- Шапка сайта : Заголовок, включающий название сайта (языковой школы), 
 логотип и панель навигации со ссылками на другие разделы (например, 
 «Курсы», «О нас», «Контакты», «Личный кабинет»). -->
-  <header class="bg-primary text-white py-3 shadow-sm">
-    <div class="container d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center">
-        <div class="bg-light text-primary rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px; font-weight: bold;">LS</div>
-        <h1 class="h5 mb-0">LinguaSchool</h1>
-      </div>
-      <nav>
-        <ul class="nav">
-          <li class="nav-item"><a class="nav-link text-white" href="index.html">Главная</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#courses">Курсы</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#about">О нас</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#contacts">Контакты</a></li>
-          <li class="nav-item"><a class="nav-link text-white fw-bold" href="profile.html">Личный кабинет</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Область уведомлений: место для всплывающих оповещений или уведомлений.  -->
-  <div id="notifications" class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1050;"></div>
-
-  <!-- Блок описания школы: раздел, содержащий информацию о 
-службе, ее миссии и образовательных предложениях.  -->
-  <section id="about" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">О нашей языковой школе</h2>
-      <p class="text-center lead">
-        LinguaSchool — место, где начинается ваш путь к свободному владению иностранными языками.
-        Мы предлагаем качественное обучение, гибкие форматы и опытных преподавателей.
-      </p>
-    </div>
-  </section>
-
-  <!-- Преимущества: раздел, в котором 
-описываются преимущества изучения иностранного языка; для вёрстки 
-необходимо использовать Bootstrap Grid System.  -->
-  <section class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Почему стоит изучать язык с нами?</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="p-3 text-center border rounded h-100">
-            <h5>Гибкое расписание</h5>
-            <p>Занятия в удобное время — утром, днём или вечером.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="p-3 text-center border rounded h-100">
-            <h5>Носители языка</h5>
-            <p>Обучение с сертифицированными преподавателями и носителями.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="p-3 text-center border rounded h-100">
-            <h5>Интерактивные методики</h5>
-            <p>Современные подходы: игры, дискуссии, онлайн-платформа.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Форма поиска курсов: Форма для поиска курсов по названию или уровню 
-(начальный, средний, продвинутый).  -->
-  <section class="py-4 bg-light">
-    <div class="container">
-      <form id="courseSearchForm" class="d-flex gap-2 flex-wrap justify-content-center">
-        <input type="text" id="searchCourseInput" class="form-control w-auto" placeholder="Поиск курса...">
-        <select id="searchLevelSelect" class="form-select w-auto">
-          <option value="">Любой уровень</option>
-          <option value="Beginner">Начальный</option>
-          <option value="Intermediate">Средний</option>
-          <option value="Advanced">Продвинутый</option>
-        </select>
-        <button type="submit" class="btn btn-outline-secondary">Найти</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Предлагаемые курсы: блок, демонстрирующий доступные языковые 
-курсы с возможностью выбора курса для получения дополнительной 
-информации.  -->
-  <section id="courses" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Наши курсы</h2>
-      <div id="coursesContainer" class="row g-4"></div>
-      <!-- Пагинация курсов: навигационная система, позволяющая пользователям 
-просматривать курсы на нескольких страницах.  -->
-      <nav aria-label="Пагинация курсов" class="mt-4">
-        <ul id="coursesPagination" class="pagination justify-content-center"></ul>
-      </nav>
-    </div>
-  </section>
-
-  <!-- Поиск репетиторов: форма для фильтрации репетиторов по квалификации 
-(выпадающий список) и опыту (количество лет).  -->
-  <section class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">Найдите репетитора</h2>
-      <form id="tutorFilterForm" class="row g-3 mb-4">
-        <div class="col-md-6">
-          <label for="tutorLanguage" class="form-label">Язык</label>
-          <select id="tutorLanguage" class="form-select">
-            <option value="">Любой язык</option>
-          </select>
-        </div>
-        <div class="col-md-6">
-          <label for="tutorExperience" class="form-label">Опыт (лет)</label>
-          <input type="number" id="tutorExperience" class="form-control" min="0" placeholder="От 0 лет">
-        </div>
-      </form>
-
-      <div class="table-responsive">
-        <table class="table table-hover align-middle">
-          <thead>
-            <tr>
-              <th>Имя</th>
-              <th>Уровень</th>
-              <th>Языки</th>
-              <th>Опыт (лет)</th>
-              <th>Ставка (руб./час)</th>
-              <th>Фото</th>
-              <th>Действие</th>
-            </tr>
-          </thead>
-          <tbody id="tutorsTableBody"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- Кнопка заказа
-  <div class="container text-center my-5">
-    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#orderModal">
-      Заказать занятие
-    </button>
-  </div> -->
-
-  <!-- Модальное окно заявки -->
-  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="orderModalLabel">Оформление заявки</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-        </div>
-        <div class="modal-body">
-          <form id="orderForm">
-            <input type="hidden" id="selectedCourseId">
-            <input type="hidden" id="selectedTutorId">
-
-            <div class="mb-3">
-              <label class="form-label">Курс / Репетитор</label>
-              <input type="text" id="orderTitle" class="form-control" readonly>
+    <header class="bg-primary text-white py-3 shadow-sm">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <div class="bg-light text-primary rounded-circle d-flex align-items-center justify-content-center me-2 round" >LS</div>
+                <h1 class="h5 mb-0">LinguaSchool</h1>
             </div>
-
-            <div class="mb-3">
-              <label for="orderDate" class="form-label">Дата начала</label>
-              <select id="orderDate" class="form-select" required>
-                <option value="">Выберите дату</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="orderTime" class="form-label">Время занятия</label>
-              <select id="orderTime" class="form-select" disabled required>
-                <option value="">Сначала выберите дату</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Продолжительность</label>
-              <input type="number" id="orderDuration" class="form-control" min="1" max="40" value="1">
-            </div>
-
-            <div class="mb-3">
-              <label for="studentsNumber" class="form-label">Количество студентов (1–20)</label>
-              <input type="number" id="studentsNumber" class="form-control" min="1" max="20" value="1" required>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Дополнительные опции</label>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="supplementary">
-                <label class="form-check-label" for="supplementary">Доп. материалы (+2000 ₽/студент)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="personalized">
-                <label class="form-check-label" for="personalized">Индивидуальные занятия (+1500 ₽/неделя)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="excursions">
-                <label class="form-check-label" for="excursions">Культурные экскурсии (+25%)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="assessment">
-                <label class="form-check-label" for="assessment">Оценка уровня (+300 ₽)</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="interactive">
-                <label class="form-check-label" for="interactive">Интерактивная платформа (+50%)</label>
-              </div>
-            </div>
-
-            <div class="alert alert-info">
-              <strong>Итоговая стоимость:</strong> <span id="totalPrice">—</span> ₽
-            </div>
-          </form>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="index.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#courses">Курсы</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#about">О нас</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#contacts">Контакты</a></li>
+                    <li class="nav-item"><a class="nav-link text-white fw-bold" href="profile.html">Личный кабинет</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-          <button type="button" class="btn btn-primary" id="submitOrderBtn">Отправить</button>
-        </div>
-      </div>
-    </div>
-  </div>
+    </header>
 
-    <!-- Карта интерактивных учебных ресурсов карта, показывающая места, где 
-учащиеся могут найти ресурсы (например, библиотеки, языковые кафе) для 
-изучения иностранных языков.  -->
-    <section id="map" class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-4">Карта языковых ресурсов Москвы</h2>
-        
-        <!-- Фильтры -->
-        <div class="d-flex flex-wrap gap-3 mb-4 justify-content-center">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="filter-course" checked>
-            <label class="form-check-label" for="filter-course">Курсы</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="filter-library" checked>
-            <label class="form-check-label" for="filter-library">Библиотеки</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="filter-cafe" checked>
-            <label class="form-check-label" for="filter-cafe">Языковые кафе/клубы</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="filter-center" checked>
-            <label class="form-check-label" for="filter-center">Культурные центры</label>
-        </div>
-        </div>
+    <!-- Область уведомлений: место для всплывающих оповещений или уведомлений.    -->
+    <div id="notifications" class="position-fixed top-0 start-50 translate-middle-x p-3"></div>
 
-        <!-- Карта -->
-        <div id="languageMap" style="height: 500px; width: 100%; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);"></div>
-    </div>
+    <!-- Блок описания школы: раздел, содержащий информацию о 
+службе, ее миссии и образовательных предложениях.    -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">О нашей языковой школе</h2>
+            <p class="text-center lead">
+                LinguaSchool — место, где начинается ваш путь к свободному владению иностранными языками.
+                Мы предлагаем качественное обучение, гибкие форматы и опытных преподавателей.
+            </p>
+        </div>
     </section>
 
-    <!-- Подключение Яндекс.Карт с ключом -->
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=27b51255-ec2d-4481-b5cc-c0b1dcd3b744&lang=ru_RU" type="text/javascript"></script>
-    <script>
-    // Данные о местах
-    const languagePlaces = [
-        {
-        name: "Библиотека иностранной литературы им. М.И. Рудомино",
-        address: "ул. Николоямская, д. 1",
-        hours: "Ежедневно 10:00–22:00",
-        contact: "+7 (495) 912-30-23",
-        description: "Крупнейшая библиотека с фондами на 50+ языках. Проводятся языковые клубы и кинопоказы.",
-        coords: [55.7475, 37.6532],
-        type: "library"
-        },
-        {
-        name: "Государственная публичная историческая библиотека",
-        address: "ул. Николоямская, д. 17",
-        hours: "Пн-Пт 10:00–21:00, Сб-Вс 10:00–18:00",
-        contact: "+7 (495) 912-18-28",
-        description: "Обширные фонды по истории и языкам. Есть залы для самостоятельной работы.",
-        coords: [55.7458, 37.6510],
-        type: "library"
-        },
-        {
-        name: "Центр иностранных языков «Polyglot»",
-        address: "проспект Мира, д. 119",
-        hours: "Пн-Сб 9:00–21:00",
-        contact: "+7 (495) 123-45-67",
-        description: "Индивидуальные и групповые занятия, подготовка к IELTS/TOEFL.",
-        coords: [55.8012, 37.6250],
-        type: "course"
-        },
-        {
-        name: "LinguaCafé — языковой клуб",
-        address: "Тверская ул., д. 15",
-        hours: "Пн-Пт 12:00–23:00, Сб-Вс 14:00–22:00",
-        contact: "hello@linguacafe.ru",
-        description: "Разговорные вечера на английском, испанском, французском. Без преподавателя — только практика!",
-        coords: [55.7622, 37.6075],
-        type: "cafe"
-        },
-        {
-        name: "Goethe-Institut Москва",
-        address: "Ленинградский проспект, д. 95",
-        hours: "Пн-Пт 10:00–19:00",
-        contact: "+7 (495) 232-19-00",
-        description: "Официальный немецкий культурный центр. Курсы, экзамены, библиотека, мероприятия.",
-        coords: [55.7985, 37.5510],
-        type: "center"
-        },
-        {
-        name: "Alliance Française de Moscou",
-        address: "ул. Б. Афанасьевский пер., д. 31",
-        hours: "Пн-Пт 10:00–20:00, Сб 10:00–16:00",
-        contact: "+7 (495) 609-00-00",
-        description: "Французский культурный центр. Курсы, сертификация DELF/DALF, кино и выставки.",
-        coords: [55.7610, 37.6320],
-        type: "center"
-        },
-        {
-        name: "British Council — Образовательный центр",
-        address: "ул. Спиридоновка, д. 14",
-        hours: "Пн-Пт 9:00–18:00",
-        contact: "+7 (495) 228-50-00",
-        description: "Подготовка к IELTS, курсы английского, библиотека, онлайн-ресурсы.",
-        coords: [55.7560, 37.6090],
-        type: "course"
-        }
-    ];
-
-    let map;
-    let placemarks = [];
-
-    ymaps.ready(initMap);
-
-    function initMap() {
-        map = new ymaps.Map('languageMap', {
-        center: [55.751244, 37.618423],
-        zoom: 10,
-        controls: ['zoomControl']
-        });
-
-        // Создаём метки
-        languagePlaces.forEach(place => {
-        const balloonContent = `
-            <div style="min-width: 200px;">
-            <strong>${place.name}</strong><br>
-             ${place.address}<br>
-             ${place.hours}<br>
-             ${place.contact}<br>
-             ${place.description}
+    <!-- Преимущества: раздел, в котором 
+описываются преимущества изучения иностранного языка; для вёрстки 
+необходимо использовать Bootstrap Grid System.    -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Почему стоит изучать язык с нами?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="p-3 text-center border rounded h-100">
+                        <h5>Гибкое расписание</h5>
+                        <p>Занятия в удобное время — утром, днём или вечером.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 text-center border rounded h-100">
+                        <h5>Носители языка</h5>
+                        <p>Обучение с сертифицированными преподавателями и носителями.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 text-center border rounded h-100">
+                        <h5>Интерактивные методики</h5>
+                        <p>Современные подходы: игры, дискуссии, онлайн-платформа.</p>
+                    </div>
+                </div>
             </div>
-        `;
-        const colorMap = {
-            course: '#4caf50',
-            library: '#2196f3',
-            cafe: '#ff9800',
-            center: '#9c27b0'
-        };
-        const placemark = new ymaps.Placemark(
-            place.coords,
-            { balloonContent },
-            {
-            preset: 'islands#icon',
-            iconColor: colorMap[place.type] || '#000'
-            }
-        );
-        placemark.originalType = place.type;
-        placemarks.push(placemark);
-        map.geoObjects.add(placemark);
-        });
-
-        // Настраиваем фильтры
-        document.querySelectorAll('input[id^="filter-"]').forEach(checkbox => {
-        checkbox.addEventListener('change', applyFilters);
-        });
-    }
-
-    function applyFilters() {
-        const activeTypes = [];
-        if (document.getElementById('filter-course').checked) activeTypes.push('course');
-        if (document.getElementById('filter-library').checked) activeTypes.push('library');
-        if (document.getElementById('filter-cafe').checked) activeTypes.push('cafe');
-        if (document.getElementById('filter-center').checked) activeTypes.push('center');
-
-        placemarks.forEach(pm => {
-        if (activeTypes.includes(pm.originalType)) {
-            pm.options.set('visible', true);
-        } else {
-            pm.options.set('visible', false);
-        }
-        });
-    }
-    </script>
-
-  <!-- Футер -->
-  <footer id="contacts" class="bg-dark text-white py-4 mt-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h5>LinguaSchool</h5>
-          <p>г. Москва, ул. Образцовая, д. 10</p>
-          <p>Телефон: +7 (495) 123-45-67</p>
-          <p>Email: info@linguaschool.ru</p>
         </div>
-        <div class="col-md-6 text-md-end">
-          <h5>Социальные сети</h5>
-          <a href="#" class="text-white me-3">VK</a>
-          <a href="#" class="text-white me-3">Telegram</a>
-          <a href="#" class="text-white">WhatsApp</a>
+    </section>
+
+    <!-- Форма поиска курсов: Форма для поиска курсов по названию или уровню 
+(начальный, средний, продвинутый).    -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <form id="courseSearchForm" class="d-flex gap-2 flex-wrap justify-content-center">
+                <input type="text" id="searchCourseInput" class="form-control w-auto" placeholder="Поиск курса...">
+                <select id="searchLevelSelect" class="form-select w-auto">
+                    <option value="">Любой уровень</option>
+                    <option value="Beginner">Начальный</option>
+                    <option value="Intermediate">Средний</option>
+                    <option value="Advanced">Продвинутый</option>
+                </select>
+                <button type="submit" class="btn btn-outline-secondary">Найти</button>
+            </form>
         </div>
-      </div>
+    </section>
+
+    <!-- Предлагаемые курсы: блок, демонстрирующий доступные языковые 
+курсы с возможностью выбора курса для получения дополнительной 
+информации.    -->
+    <section id="courses" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Наши курсы</h2>
+            <div id="coursesContainer" class="row g-4"></div>
+            <!-- Пагинация курсов: навигационная система, позволяющая пользователям 
+просматривать курсы на нескольких страницах.    -->
+            <nav aria-label="Пагинация курсов" class="mt-4">
+                <ul id="coursesPagination" class="pagination justify-content-center"></ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Поиск репетиторов: форма для фильтрации репетиторов по квалификации 
+(выпадающий список) и опыту (количество лет).    -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Найдите репетитора</h2>
+            <form id="tutorFilterForm" class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label for="tutorLanguage" class="form-label">Язык</label>
+                    <select id="tutorLanguage" class="form-select">
+                        <option value="">Любой язык</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="tutorExperience" class="form-label">Опыт (лет)</label>
+                    <input type="number" id="tutorExperience" class="form-control" min="0" placeholder="От 0 лет">
+                </div>
+            </form>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Имя</th>
+                            <th>Уровень</th>
+                            <th>Языки</th>
+                            <th>Опыт (лет)</th>
+                            <th>Ставка (руб./час)</th>
+                            <th>Фото</th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tutorsTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Кнопка заказа
+    <div class="container text-center my-5">
+        <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#orderModal">
+            Заказать занятие
+        </button>
+    </div> -->
+
+    <!-- Модальное окно заявки -->
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderModalLabel">Оформление заявки</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="orderForm">
+                        <input type="hidden" id="selectedCourseId">
+                        <input type="hidden" id="selectedTutorId">
+
+                        <div class="mb-3">
+                            <label class="form-label">Курс / Репетитор</label>
+                            <input type="text" id="orderTitle" class="form-control" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="orderDate" class="form-label">Дата начала</label>
+                            <select id="orderDate" class="form-select" required>
+                                <option value="">Выберите дату</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="orderTime" class="form-label">Время занятия</label>
+                            <select id="orderTime" class="form-select" disabled required>
+                                <option value="">Сначала выберите дату</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Продолжительность</label>
+                            <input type="number" id="orderDuration" class="form-control" min="1" max="40" value="1">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="studentsNumber" class="form-label">Количество студентов (1–20)</label>
+                            <input type="number" id="studentsNumber" class="form-control" min="1" max="20" value="1" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Дополнительные опции</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="supplementary">
+                                <label class="form-check-label" for="supplementary">Доп. материалы (+2000 ₽/студент)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="personalized">
+                                <label class="form-check-label" for="personalized">Индивидуальные занятия (+1500 ₽/неделя)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="excursions">
+                                <label class="form-check-label" for="excursions">Культурные экскурсии (+25%)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="assessment">
+                                <label class="form-check-label" for="assessment">Оценка уровня (+300 ₽)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="interactive">
+                                <label class="form-check-label" for="interactive">Интерактивная платформа (+50%)</label>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <strong>Итоговая стоимость:</strong> <span id="totalPrice">—</span> ₽
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary" id="submitOrderBtn">Отправить</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Свои скрипты -->
-  <script src="config.js"></script>
-  <script src="api.js"></script>
-  <script src="main.js"></script>
+        <!-- Карта интерактивных учебных ресурсов карта, показывающая места, где 
+учащиеся могут найти ресурсы (например, библиотеки, языковые кафе) для 
+изучения иностранных языков.    -->
+        <section id="map" class="py-5">
+        <div class="container">
+                <h2 class="text-center mb-4">Карта языковых ресурсов Москвы</h2>
+                
+                <!-- Фильтры -->
+                <div class="d-flex flex-wrap gap-3 mb-4 justify-content-center">
+                <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="filter-course" checked>
+                        <label class="form-check-label" for="filter-course">Курсы</label>
+                </div>
+                <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="filter-library" checked>
+                        <label class="form-check-label" for="filter-library">Библиотеки</label>
+                </div>
+                <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="filter-cafe" checked>
+                        <label class="form-check-label" for="filter-cafe">Языковые кафе/клубы</label>
+                </div>
+                <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="filter-center" checked>
+                        <label class="form-check-label" for="filter-center">Культурные центры</label>
+                </div>
+                </div>
+
+                <!-- Карта -->
+                <div id="languageMap" class="map"></div>
+        </div>
+        </section>
+
+        <!-- Подключение Яндекс.Карт с ключом -->
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=27b51255-ec2d-4481-b5cc-c0b1dcd3b744&lang=ru_RU" type="text/javascript"></script>
+        <script>
+        // Данные о местах
+        const languagePlaces = [
+                {
+                name: "Библиотека иностранной литературы им. М.И. Рудомино",
+                address: "ул. Николоямская, д. 1",
+                hours: "Ежедневно 10:00–22:00",
+                contact: "+7 (495) 912-30-23",
+                description: "Крупнейшая библиотека с фондами на 50+ языках. Проводятся языковые клубы и кинопоказы.",
+                coords: [55.7475, 37.6532],
+                type: "library"
+                },
+                {
+                name: "Государственная публичная историческая библиотека",
+                address: "ул. Николоямская, д. 17",
+                hours: "Пн-Пт 10:00–21:00, Сб-Вс 10:00–18:00",
+                contact: "+7 (495) 912-18-28",
+                description: "Обширные фонды по истории и языкам. Есть залы для самостоятельной работы.",
+                coords: [55.7458, 37.6510],
+                type: "library"
+                },
+                {
+                name: "Центр иностранных языков «Polyglot»",
+                address: "проспект Мира, д. 119",
+                hours: "Пн-Сб 9:00–21:00",
+                contact: "+7 (495) 123-45-67",
+                description: "Индивидуальные и групповые занятия, подготовка к IELTS/TOEFL.",
+                coords: [55.8012, 37.6250],
+                type: "course"
+                },
+                {
+                name: "LinguaCafé — языковой клуб",
+                address: "Тверская ул., д. 15",
+                hours: "Пн-Пт 12:00–23:00, Сб-Вс 14:00–22:00",
+                contact: "hello@linguacafe.ru",
+                description: "Разговорные вечера на английском, испанском, французском. Без преподавателя — только практика!",
+                coords: [55.7622, 37.6075],
+                type: "cafe"
+                },
+                {
+                name: "Goethe-Institut Москва",
+                address: "Ленинградский проспект, д. 95",
+                hours: "Пн-Пт 10:00–19:00",
+                contact: "+7 (495) 232-19-00",
+                description: "Официальный немецкий культурный центр. Курсы, экзамены, библиотека, мероприятия.",
+                coords: [55.7985, 37.5510],
+                type: "center"
+                },
+                {
+                name: "Alliance Française de Moscou",
+                address: "ул. Б. Афанасьевский пер., д. 31",
+                hours: "Пн-Пт 10:00–20:00, Сб 10:00–16:00",
+                contact: "+7 (495) 609-00-00",
+                description: "Французский культурный центр. Курсы, сертификация DELF/DALF, кино и выставки.",
+                coords: [55.7610, 37.6320],
+                type: "center"
+                },
+                {
+                name: "British Council — Образовательный центр",
+                address: "ул. Спиридоновка, д. 14",
+                hours: "Пн-Пт 9:00–18:00",
+                contact: "+7 (495) 228-50-00",
+                description: "Подготовка к IELTS, курсы английского, библиотека, онлайн-ресурсы.",
+                coords: [55.7560, 37.6090],
+                type: "course"
+                }
+        ];
+
+        let map;
+        let placemarks = [];
+
+        ymaps.ready(initMap);
+
+        function initMap() {
+                map = new ymaps.Map('languageMap', {
+                center: [55.751244, 37.618423],
+                zoom: 10,
+                controls: ['zoomControl']
+                });
+
+                // Создаём метки
+                languagePlaces.forEach(place => {
+                const balloonContent = `
+                        <div style="min-width: 200px;">
+                        <strong>${place.name}</strong><br>
+                         ${place.address}<br>
+                         ${place.hours}<br>
+                         ${place.contact}<br>
+                         ${place.description}
+                        </div>
+                `;
+                const colorMap = {
+                        course: '#4caf50',
+                        library: '#2196f3',
+                        cafe: '#ff9800',
+                        center: '#9c27b0'
+                };
+                const placemark = new ymaps.Placemark(
+                        place.coords,
+                        { balloonContent },
+                        {
+                        preset: 'islands#icon',
+                        iconColor: colorMap[place.type] || '#000'
+                        }
+                );
+                placemark.originalType = place.type;
+                placemarks.push(placemark);
+                map.geoObjects.add(placemark);
+                });
+
+                // Настраиваем фильтры
+                document.querySelectorAll('input[id^="filter-"]').forEach(checkbox => {
+                checkbox.addEventListener('change', applyFilters);
+                });
+        }
+
+        function applyFilters() {
+                const activeTypes = [];
+                if (document.getElementById('filter-course').checked) activeTypes.push('course');
+                if (document.getElementById('filter-library').checked) activeTypes.push('library');
+                if (document.getElementById('filter-cafe').checked) activeTypes.push('cafe');
+                if (document.getElementById('filter-center').checked) activeTypes.push('center');
+
+                placemarks.forEach(pm => {
+                if (activeTypes.includes(pm.originalType)) {
+                        pm.options.set('visible', true);
+                } else {
+                        pm.options.set('visible', false);
+                }
+                });
+        }
+        </script>
+
+    <!-- Футер -->
+    <footer id="contacts" class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>LinguaSchool</h5>
+                    <p>г. Москва, ул. Образцовая, д. 10</p>
+                    <p>Телефон: +7 (495) 123-45-67</p>
+                    <p>Email: info@linguaschool.ru</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5>Социальные сети</h5>
+                    <a href="#" class="text-white me-3">VK</a>
+                    <a href="#" class="text-white me-3">Telegram</a>
+                    <a href="#" class="text-white">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Свои скрипты -->
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
 

@@ -10,7 +10,7 @@ let currentOrderIdForDelete = null;
 
 // === НОВОЕ: Храним данные курса/репетитора, чтобы знать их цену ===
 let currentEditEntity = null; // Здесь будет объект курса или репетитора
-let currentEditOrder = null;  // Здесь сама заявка
+let currentEditOrder = null; // Здесь сама заявка
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadOrders();

@@ -6,9 +6,9 @@
 // @returns {string} Полный URL с api_key
 
 function buildUrl(path) {
-  const url = new URL(path, API_BASE_URL);
-  url.searchParams.append('api_key', API_KEY);
-  return url.toString();
+    const url = new URL(path, API_BASE_URL);
+    url.searchParams.append('api_key', API_KEY);
+    return url.toString();
 }
 
 /**
@@ -18,37 +18,37 @@ function buildUrl(path) {
  * @returns {Promise} Обработанный JSON или ошибка
  */
 async function apiRequest(url, options = {}) {
-  const defaultOptions = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  const config = { ...defaultOptions, ...options };
+    const defaultOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+    const config = { ...defaultOptions, ...options };
 
-  try {
-    const response = await fetch(url, config);
+    try {
+        const response = await fetch(url, config);
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      let errorMessage = `Ошибка ${response.status}: ${response.statusText}`;
-      try {
-        const errorJson = JSON.parse(errorText);
-        if (errorJson.error) errorMessage = errorJson.error;
-      } catch (e) {
-        // Используем текст ошибки как есть
-      }
-      throw new Error(errorMessage);
+        if (!response.ok) {
+            const errorText = await response.text();
+            let errorMessage = `Ошибка ${response.status}: ${response.statusText}`;
+            try {
+                const errorJson = JSON.parse(errorText);
+                if (errorJson.error) errorMessage = errorJson.error;
+            } catch (e) {
+                // Используем текст ошибки как есть
+            }
+            throw new Error(errorMessage);
+        }
+
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            return await response.json();
+        }
+        return await response.text();
+    } catch (error) {
+        console.error('API request failed:', error);
+        throw error;
     }
-
-    const contentType = response.headers.get('content-type');
-    if (contentType && contentType.includes('application/json')) {
-      return await response.json();
-    }
-    return await response.text();
-  } catch (error) {
-    console.error('API request failed:', error);
-    throw error;
-  }
 }
 
 // === Экспортируемые функции ===
@@ -58,8 +58,8 @@ async function apiRequest(url, options = {}) {
  * @returns {Promise<Array>} Массив курсов
  */
 async function fetchCourses() {
-  const url = buildUrl('/api/courses');
-  return await apiRequest(url);
+    const url = buildUrl('/api/courses');
+    return await apiRequest(url);
 }
 
 /**
@@ -67,8 +67,8 @@ async function fetchCourses() {
  * @returns {Promise<Array>} Массив репетиторов
  */
 async function fetchTutors() {
-  const url = buildUrl('/api/tutors');
-  return await apiRequest(url);
+    const url = buildUrl('/api/tutors');
+    return await apiRequest(url);
 }
 
 /**
@@ -76,8 +76,8 @@ async function fetchTutors() {
  * @returns {Promise<Array>} Массив заявок
  */
 async function fetchOrders() {
-  const url = buildUrl('/api/orders');
-  return await apiRequest(url);
+    const url = buildUrl('/api/orders');
+    return await apiRequest(url);
 }
 
 /**
@@ -86,11 +86,11 @@ async function fetchOrders() {
  * @returns {Promise<Object>} Созданная заявка
  */
 async function createOrder(orderData) {
-  const url = buildUrl('/api/orders');
-  return await apiRequest(url, {
-    method: 'POST',
-    body: JSON.stringify(orderData),
-  });
+    const url = buildUrl('/api/orders');
+    return await apiRequest(url, {
+        method: 'POST',
+        body: JSON.stringify(orderData),
+    });
 }
 
 /**
@@ -100,11 +100,11 @@ async function createOrder(orderData) {
  * @returns {Promise<Object>} Обновлённая заявка
  */
 async function updateOrder(orderId, orderData) {
-  const url = buildUrl(`/api/orders/${orderId}`);
-  return await apiRequest(url, {
-    method: 'PUT',
-    body: JSON.stringify(orderData),
-  });
+    const url = buildUrl(`/api/orders/${orderId}`);
+    return await apiRequest(url, {
+        method: 'PUT',
+        body: JSON.stringify(orderData),
+    });
 }
 
 /**
@@ -113,10 +113,10 @@ async function updateOrder(orderId, orderData) {
  * @returns {Promise<Object>} Ответ сервера (обычно { id: ... })
  */
 async function deleteOrder(orderId) {
-  const url = buildUrl(`/api/orders/${orderId}`);
-  return await apiRequest(url, {
-    method: 'DELETE',
-  });
+    const url = buildUrl(`/api/orders/${orderId}`);
+    return await apiRequest(url, {
+        method: 'DELETE',
+    });
 }
 
 /**
@@ -125,8 +125,8 @@ async function deleteOrder(orderId) {
  * @returns {Promise<Object>} Данные заявки
  */
 async function fetchOrderById(orderId) {
-  const url = buildUrl(`/api/orders/${orderId}`);
-  return await apiRequest(url);
+    const url = buildUrl(`/api/orders/${orderId}`);
+    return await apiRequest(url);
 }
 
 
@@ -134,14 +134,14 @@ async function fetchOrderById(orderId) {
  * Получить курс по ID.
  */
 async function fetchCourseById(id) {
-  const courses = await fetchCourses();
-  return courses.find(c => c.id == id);
+    const courses = await fetchCourses();
+    return courses.find(c => c.id == id);
 }
 
 /**
  * Получить репетитора по ID.
  */
 async function fetchTutorById(id) {
-  const tutors = await fetchTutors();
-  return tutors.find(t => t.id == id);
+    const tutors = await fetchTutors();
+    return tutors.find(t => t.id == id);
 }
